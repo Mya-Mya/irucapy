@@ -2,6 +2,10 @@ from . import room, member, members
 from abc import ABC, abstractmethod
 
 class IrucaAPI(ABC):
+    """
+    An interface of iruca API.
+    Reference: https://iruca.co/api
+    """
     @abstractmethod
     def get_room_info(self, room_code:str)->room.Room:
         """
