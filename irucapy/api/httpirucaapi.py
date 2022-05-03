@@ -44,7 +44,19 @@ class HTTPIrucaAPI(IrucaAPI):
             raise NetworkError(e)
 
     def get_room_members(self, room_code: str) -> members.Members:
-        return super().get_room_members(room_code)
+        url:str = f"{self.get_room_url(room_code)}/members"
+        try:
+            with urlopen(url) as res:
+                data: bytes = res.read()
+                json_text = data.decode("utf-8")
+                member_data: members.Members | None = members.from_json_maybe(json_text)
+                if member_data is None:
+                    raise MemberNotFoundError()
+                return member_data
+        except Exception as e:
+            if hasattr(e, "code") and e.code == 404:
+                raise RoomNotFoundError(e)
+            raise NetworkError(e)
 
     def get_room_member(self, room_code: str, member_id: int) -> member.Member:
         return super().get_room_member(room_code, member_id)
