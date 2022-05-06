@@ -1,4 +1,6 @@
-from . import room, member, members
+from .room import Room
+from .member import Member
+from .members import Members
 from .memberupdate import MemberUpdateParam
 from abc import ABC, abstractmethod
 
@@ -9,7 +11,7 @@ class IrucaAPI(ABC):
     Reference: https://iruca.co/api
     """
     @abstractmethod
-    def get_room_info(self, room_code:str)->room.Room:
+    def get_room_info(self, room_code: str) -> Room:
         """
         Call the `ルーム情報取得API`.
         Reference: https://iruca.co/api
@@ -30,7 +32,7 @@ class IrucaAPI(ABC):
         pass
 
     @abstractmethod
-    def get_room_member(self, room_code:str, member_id:int)->member.Member:
+    def get_room_member(self, room_code: str, member_id: int) -> Member:
         """
         Call the `メンバー情報取得API`.
         Reference: https://iruca.co/api
@@ -52,7 +54,7 @@ class IrucaAPI(ABC):
         pass
 
     @abstractmethod
-    def get_room_members(self, room_code:str)->members.Members:
+    def get_room_members(self, room_code: str) -> Members:
         """
         Call the `メンバー一覧取得API`.
         Reference: https://iruca.co/api
