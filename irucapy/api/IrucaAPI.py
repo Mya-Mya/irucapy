@@ -1,5 +1,7 @@
 from . import room, member, members
+from .memberupdate import MemberUpdateParam
 from abc import ABC, abstractmethod
+
 
 class IrucaAPI(ABC):
     """
@@ -70,3 +72,22 @@ class IrucaAPI(ABC):
         MemberNotFoundError
         """
         pass
+
+    @abstractmethod
+    def update_room_member(self, room_code: str, member_id: int, param: MemberUpdateParam) -> None:
+        """
+        Call the `メンバー情報更新API`.
+        Reference : https://iruca.co/api
+
+        Parameters
+        ----------
+        room_code : str
+        member_id : int
+        param : MemberUpdateParam
+
+        Raises
+        ------
+        NetworkError
+        RoomNotFoundError
+        MemberNotFoundError
+        """
