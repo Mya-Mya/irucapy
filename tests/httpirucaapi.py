@@ -20,6 +20,16 @@ def get_room_member():
     member = api.get_room_member(room_code, member_id)
     print(member)
 
+
+@testerfunc
+def update_room_member():
+    member_id = int(input("MEMBER ID: "))
+    status = input("STATUS: ")
+    param = irucapy.api.memberupdate.MemberUpdateParam(status, None, None)
+    api.update_room_member(room_code, member_id, param)
+
+
 room_code = input("ROOM-CODE: ")
 api = irucapy.api.httpirucaapi.HTTPIrucaAPI()
-get_room_member()
+get_room_members()
+update_room_member()
