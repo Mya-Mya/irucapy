@@ -1,7 +1,10 @@
 from . import room, member, members
 from .exceptions import NetworkError, RoomNotFoundError, MemberNotFoundError
+from .memberupdate import MemberUpdateParam
 from .irucaapi import IrucaAPI
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
+import json
+from dataclasses import asdict
 
 
 class HTTPIrucaAPI(IrucaAPI):
@@ -70,6 +73,19 @@ class HTTPIrucaAPI(IrucaAPI):
                 if member_data is None:
                     raise MemberNotFoundError()
                 return member_data
+        except Exception as e:
+            if hasattr(e, "code") and e.code == 404:
+                raise MemberNotFoundError(e)
+            raise NetworkError(e)
+
+    def update_room_member(self, room_code: str, member_id: int, param: MemberUpdateParam) -> None:
+        url: str = f"{self.get_room_url(room_code)}/members/{member_id}"
+        try:
+            data = json.dumps(asdict(param)).encode()
+            request = Request(url, data=data, headers={
+                              "Content-Type": "application/json"}, method="PUT")
+            with urlopen(request) as res:
+                pass
         except Exception as e:
             if hasattr(e, "code") and e.code == 404:
                 raise MemberNotFoundError(e)
