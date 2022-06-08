@@ -1,2 +1,2 @@
-__version__ = "0.0.1"
-from . import api
+__version__ = "0.1.0"
+from . import api, irucaclient
