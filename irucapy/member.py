@@ -1,4 +1,4 @@
-from ..types import ISO8601Text
+from .types import ISO8601Text
 from typing import Optional
 from dataclasses import dataclass
 from . import dataclassutil

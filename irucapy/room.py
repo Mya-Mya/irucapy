@@ -1,4 +1,4 @@
-from ..types import UUIDText, ISO8601Text
+from .types import UUIDText, ISO8601Text
 from typing import Optional, List
 from dataclasses import dataclass
 from . import dataclassutil

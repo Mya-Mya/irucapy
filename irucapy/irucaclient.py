@@ -1,6 +1,6 @@
-from .api.irucaapi import IrucaAPI
-from .api.memberupdate import MemberUpdateParam
-from .api import room, member, members
+from .irucaapi import IrucaAPI
+from .memberupdate import MemberUpdateParam
+from . import room, member, members
 from typing import Optional
 
 
