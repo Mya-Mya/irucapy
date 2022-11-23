@@ -4,4 +4,6 @@ from . import \
     room,member,members,\
     irucaapi,httpirucaapi,memberupdate,\
     irucaclient
-    
+from .irucaapi import IrucaAPI
+from .httpirucaapi import HTTPIrucaAPI
+from .irucaclient import IrucaClient
