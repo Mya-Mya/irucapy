@@ -30,6 +30,6 @@ def update_room_member():
 
 
 room_code = input("ROOM-CODE: ")
-api = irucapy.httpirucaapi.HTTPIrucaAPI()
+api = irucapy.HTTPIrucaAPI()
 get_room_members()
 update_room_member()
