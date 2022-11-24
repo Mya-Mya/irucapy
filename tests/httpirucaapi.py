@@ -25,7 +25,9 @@ def get_room_member():
 def update_room_member():
     member_id = int(input("MEMBER ID: "))
     status = input("STATUS: ")
-    param = irucapy.memberupdate.MemberUpdateParam(status, None, None)
+    message_input = input("MESSAGE(none for None): ")
+    message = None if message_input=="none" else message_input
+    param = irucapy.memberupdate.MemberUpdateParam(status, None, message)
     api.update_room_member(room_code, member_id, param)
 
 
