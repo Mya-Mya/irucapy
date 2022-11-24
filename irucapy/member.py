@@ -2,6 +2,7 @@ from .types import ISO8601Text
 from typing import Optional
 from dataclasses import dataclass
 from . import dataclassutil
+import json
 
 
 @dataclass
@@ -22,3 +23,17 @@ class Member:
 
 def from_json_maybe(json_text: str) -> Optional[Member]:
     return dataclassutil.from_json_maybe(json_text, Member)
+def from_json_object_maybe(o: object) -> Optional[Member]:
+    try:
+        return Member(
+            id=o["id"],
+            room_id=o["room_id"],
+            name=o["name"],
+            status=o["status"],
+            message=o["message"],
+            created_at=o["created_at"],
+            updated_at=o["updated_at"],
+            position=o["position"],
+        )
+    except:
+        return None
