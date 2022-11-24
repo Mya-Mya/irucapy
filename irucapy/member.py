@@ -22,7 +22,9 @@ class Member:
 
 
 def from_json_maybe(json_text: str) -> Optional[Member]:
-    return dataclassutil.from_json_maybe(json_text, Member)
+    return from_json_object_maybe(json.loads(json_text))
+
+
 def from_json_object_maybe(o: object) -> Optional[Member]:
     try:
         return Member(
