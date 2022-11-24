@@ -14,7 +14,7 @@ class Member:
     room_id: int
     name: str
     status: str
-    message: str
+    message: Optional[str]
     created_at: ISO8601Text
     updated_at: ISO8601Text
     position: int
