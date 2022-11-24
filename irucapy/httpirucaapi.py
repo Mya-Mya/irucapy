@@ -81,7 +81,12 @@ class HTTPIrucaAPI(IrucaAPI):
     def update_room_member(self, room_code: str, member_id: int, param: MemberUpdateParam) -> None:
         url: str = f"{self.get_room_url(room_code)}/members/{member_id}"
         try:
-            data = json.dumps(asdict(param)).encode()
+            data_object = {"status":param.status}
+            if param.name is not None:
+                data_object["name"] = param.name
+            if param.message is not None:
+                data_object["message"] = param.message
+            data = json.dumps(data_object).encode()
             request = Request(url, data=data, headers={
                               "Content-Type": "application/json"}, method="PUT")
             with urlopen(request) as res:
