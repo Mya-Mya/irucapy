@@ -11,6 +11,7 @@ class Member:
     The response template for the `メンバー情報取得API`.
     Reference: https://iruca.co/api
     """
+
     id: int
     room_id: int
     name: str
